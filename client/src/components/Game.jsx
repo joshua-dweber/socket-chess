@@ -18,7 +18,7 @@ import whiterook from '../images/whiterook.png';
 
 export default withCookies(({reset, cookies}) => {
 
-    const [socket] = useState(() => io(':9000'));
+    const [socket] = useState(() => io('http://localhost:9000'));
     const [images, setImages] = useState({});
     const [selected, setSelected] = useState({"pos": "", "name": "", "color": ""});
     const [yourTurn, setYourTurn] = useState(false);
