@@ -18,7 +18,7 @@ import whiterook from '../images/whiterook.png';
 
 export default withCookies(({reset, cookies}) => {
 
-    const [socket] = useState(() => io(':9000'));
+    const [socket] = useState(() => io('http://localhost:9000'));
     const [images, setImages] = useState({});
     const [selected, setSelected] = useState({"pos": "", "name": "", "color": ""});
     const [yourTurn, setYourTurn] = useState(false);
@@ -162,7 +162,7 @@ export default withCookies(({reset, cookies}) => {
                                     }
                                     setPieces({ ...pieces });
                                     setOpponentPieces({ ...opponentPieces });
-                                    axios.put('http://localhost:9000/api/game/attackPieces', { userId: cookies.cookies.currentUser, oppId: cookies.cookies.currentUser == 1 ? 2 : 1, pieces: pieces, oppPieces: opponentPieces, _id: cookies.cookies.currentId })
+                                    axios.put('http://localhost:9000/api/game/attackPieces', { userId: cookies.cookies.currentUser, oppId: cookies.cookies.currentUser == 1 ? 2 : 1, pieces: pieces, oppPieces: convertToOpponent(opponentPieces), _id: cookies.cookies.currentId })
                                         .then(res => console.log(res))
                                     setInCheck(false);
                                     socket.emit("attack", { pieces: pieces, opponentPieces: opponentPieces, _id: cookies.cookies.currentId });

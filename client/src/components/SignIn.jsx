@@ -3,7 +3,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import '../css/buttons.css';
 export default ({setCookies}) => {
-    const [socket] = useState(() => io(':9000'));
+    const [socket] = useState(() => io('http://localhost:9000'));
     const [name, setName] = useState("");
     const [games, setGames] = useState([]);
 
